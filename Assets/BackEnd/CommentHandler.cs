@@ -28,7 +28,9 @@ public class CommentHandler : MonoBehaviour {
     private string commentUserText = "";
     private string constNameText = "";
     private string ratingText = "";
-    
+
+    private string autoUser;
+    public UserValue userValue;
     public GameObject likeBtn;
     public GameObject dislikeBtn;
 
@@ -42,6 +44,7 @@ public class CommentHandler : MonoBehaviour {
     
     void Start(){
         commentListDB = null;
+        autoUser = userValue.userName;
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task => {
             dependencyStatus = task.Result;
             if (dependencyStatus == DependencyStatus.Available) {

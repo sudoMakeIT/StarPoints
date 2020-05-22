@@ -205,6 +205,7 @@ GameObject:
   m_Component:
   - component: {fileID: 140729304}
   - component: {fileID: 140729303}
+  - component: {fileID: 140729305}
   m_Layer: 0
   m_Name: LoginHandler
   m_TagString: Untagged
@@ -224,6 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b90cd0ccda2e94c84194d2a136d9b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  userValue: {fileID: 140729305}
   emailText: {fileID: 1577041420}
   passwordText: {fileID: 1479812641}
   regEmailText: {fileID: 2081692415}
@@ -242,6 +244,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &140729305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140729302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a12d5c4c8781908449a3e4edd6f8f0f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  userName: 
 --- !u!1 &156580855
 GameObject:
   m_ObjectHideFlags: 0
@@ -2998,6 +3013,17 @@ MonoBehaviour:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1861150714}
+        m_MethodName: LoadScene
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

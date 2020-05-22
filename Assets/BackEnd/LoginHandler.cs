@@ -22,6 +22,7 @@ using UnityEngine.SceneManagement;
 
 public class LoginHandler : MonoBehaviour {
 
+    public UserValue userValue;
     protected Firebase.Auth.FirebaseAuth auth;
     protected Dictionary<string, Firebase.Auth.FirebaseUser> userByAuth = new Dictionary<string, Firebase.Auth.FirebaseUser>();
     private string logText = "";
@@ -183,6 +184,7 @@ public class LoginHandler : MonoBehaviour {
             DebugLog(operation + " completed");
             if(operation == "Sign-in") {
                 DebugLog("Login feito");
+                userValue.userName = email;
                 SceneManager.LoadScene("List");         
             }
             complete = true;
