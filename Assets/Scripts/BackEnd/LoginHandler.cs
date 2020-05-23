@@ -24,6 +24,7 @@ public class LoginHandler : MonoBehaviour
 {
 
     public UI_Screen nextScreen;
+    public UI_Screen loginScreen;
     public UI_System go;
     protected Firebase.Auth.FirebaseAuth auth;
     protected Dictionary<string, Firebase.Auth.FirebaseUser> userByAuth = new Dictionary<string, Firebase.Auth.FirebaseUser>();
@@ -39,6 +40,9 @@ public class LoginHandler : MonoBehaviour
     protected string passwordReg = "";
 
     protected string displayName = "";
+
+    private string autoUser;
+    public UserValue userValue;
     private bool fetchingToken = false;
 
     const int kMaxLogSize = 16382;
@@ -119,6 +123,7 @@ public class LoginHandler : MonoBehaviour
         {"Provider ID", userInfo.ProviderId},
         {"User ID", userInfo.UserId}
         };
+        userValue.userName = userProperties["Email"];
         foreach (var property in userProperties)
         {
             if (!String.IsNullOrEmpty(property.Value))
@@ -211,10 +216,10 @@ public class LoginHandler : MonoBehaviour
         }
         else if (task.IsCompleted)
         {
-
             DebugLog(operation + " completed");
             if (operation == "Sign-in")
             {
+                userValue.userName = email;
                 DebugLog("Login feito");
                 UnityMainThread.wkr.AddJob(() =>
                 {
@@ -279,6 +284,10 @@ public class LoginHandler : MonoBehaviour
         if (LogTaskCompletion(authTask, "User profile"))
         {
             DisplayDetailedUserInfo(auth.CurrentUser, 1);
+            UnityMainThread.wkr.AddJob(() =>
+            {
+                go.SwitchScreen(nextScreen);
+            });
         }
     }
 
@@ -367,5 +376,19 @@ public class LoginHandler : MonoBehaviour
                 }
             }
         });
+    }
+
+    public void skipLogin() {
+        if(userValue.userName == "" || userValue.userName == null) {
+            UnityMainThread.wkr.AddJob(() =>
+            {
+                go.SwitchScreen(loginScreen);
+            });
+        } else {
+            UnityMainThread.wkr.AddJob(() =>
+            {
+                go.SwitchScreen(nextScreen);
+            });
+        }
     }
 }
