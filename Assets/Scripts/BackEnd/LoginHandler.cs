@@ -24,6 +24,7 @@ public class LoginHandler : MonoBehaviour
 {
 
     public UI_Screen nextScreen;
+    public UI_System go;
     protected Firebase.Auth.FirebaseAuth auth;
     protected Dictionary<string, Firebase.Auth.FirebaseUser> userByAuth = new Dictionary<string, Firebase.Auth.FirebaseUser>();
     private string logText = "";
@@ -214,7 +215,8 @@ public class LoginHandler : MonoBehaviour
             if (operation == "Sign-in")
             {
                 DebugLog("Login feito");
-                gameObject.GetComponent<UI_System>().SwitchScreen(nextScreen);
+                go.SwitchScreen(nextScreen);
+
             }
             complete = true;
         }

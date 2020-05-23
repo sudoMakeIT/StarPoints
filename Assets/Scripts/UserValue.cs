@@ -5,5 +5,5 @@ using UnityEngine;
 public class UserValue : MonoBehaviour
 {
     public string userName;
-    
+
 }
