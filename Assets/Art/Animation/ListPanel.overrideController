@@ -6,6 +6,12 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: New Animator Override Controller
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Name: ListPanel
+  m_Controller: {fileID: 9100000, guid: 4c32fecea7c971fb482418b6d1cdd365, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 5272abe722980564bbc9c5e0e7628a06, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 5272abe722980564bbc9c5e0e7628a06, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 69bd55dff78068cdba05ad7b9b536bc0, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 69bd55dff78068cdba05ad7b9b536bc0, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e3b0ace786181ed8ab1666259ba3719c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e3b0ace786181ed8ab1666259ba3719c, type: 2}
