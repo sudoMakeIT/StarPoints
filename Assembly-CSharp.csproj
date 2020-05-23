@@ -55,6 +55,7 @@
      <Compile Include="Assets\Scripts\StartMenu.cs" />
      <Compile Include="Assets\Scripts\UI\UI_Screen.cs" />
      <Compile Include="Assets\Scripts\UI\UI_System.cs" />
+     <Compile Include="Assets\Scripts\UnityMainThread.cs" />
      <Compile Include="Assets\Scripts\UserValue.cs" />
      <Compile Include="Assets\ScrollStarField.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />

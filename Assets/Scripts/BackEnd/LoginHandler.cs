@@ -211,12 +211,15 @@ public class LoginHandler : MonoBehaviour
         }
         else if (task.IsCompleted)
         {
+
             DebugLog(operation + " completed");
             if (operation == "Sign-in")
             {
                 DebugLog("Login feito");
-                go.SwitchScreen(nextScreen);
-
+                UnityMainThread.wkr.AddJob(() =>
+                {
+                    go.SwitchScreen(nextScreen);
+                });
             }
             complete = true;
         }
@@ -286,7 +289,7 @@ public class LoginHandler : MonoBehaviour
         .ContinueWith(HandleSigninResult);
     }
 
-    void HandleSigninResult(Task<Firebase.Auth.FirebaseUser> authTask)
+    public void HandleSigninResult(Task<Firebase.Auth.FirebaseUser> authTask)
     {
         LogTaskCompletion(authTask, "Sign-in");
     }

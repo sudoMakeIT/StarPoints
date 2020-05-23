@@ -19,9 +19,9 @@ public class UI_System : MonoBehaviour
     public float fadeOutDuration = 1f;
 
     private Component[] screens = new Component[0];
-    private UI_Screen prevScreen;
+    public UI_Screen prevScreen;
     public UI_Screen PrevScreen { get { return prevScreen; } }
-    private UI_Screen currScreen;
+    public UI_Screen currScreen;
     public UI_Screen CurrScreen { get { return currScreen; } }
 
     // Start is called before the first frame update
