@@ -113,8 +113,8 @@ public class CommentHandler : MonoBehaviour
         commentNewText = commentNew.text;
         print(commentNewText);
         //TODO: ir buscar automaticamente o user logado
-        commentUserText = "devBruno";
-        constNameText = "Ursa";
+        commentUserText = autoUser;
+        constNameText = constName.text;
         ratingText = "0";
 
         DatabaseReference reference = FirebaseDatabase.DefaultInstance.GetReference("Comments");
@@ -174,7 +174,7 @@ public class CommentHandler : MonoBehaviour
     {
         commIndex = 0;
         Debug.Log("Função loadComennts");
-        string constSearch = "Ursa";
+        string constSearch = constName.text;
         bool hasComment = false;
         DatabaseReference reference = FirebaseDatabase.DefaultInstance.GetReference("Comments");
         reference.ValueChanged += (object sender2, ValueChangedEventArgs e2) =>
@@ -271,7 +271,7 @@ public class CommentHandler : MonoBehaviour
         string coomFavId = commentListDB[commIndex].Id;
         Debug.Log("comment index for check is " + commentListDB[commIndex].ToString());
         FirebaseDatabase.DefaultInstance
-        .GetReference("Likes").OrderByChild("User").EqualTo("devBruno").OrderByChild("Comment").EqualTo(coomFavId)
+        .GetReference("Likes").OrderByChild("User").EqualTo(autoUser).OrderByChild("Comment").EqualTo(coomFavId)
         .ValueChanged += (object sender2, ValueChangedEventArgs e2) =>
         {
             if (e2.DatabaseError != null)
@@ -333,7 +333,7 @@ public class CommentHandler : MonoBehaviour
         List<object> favList = mutableData.Value as List<object>;
 
         //TODO: ir buscar automaticamente o user logado
-        string favUserText = "devBruno";
+        string favUserText = autoUser;
 
         if (favList == null)
         {
@@ -401,7 +401,7 @@ public class CommentHandler : MonoBehaviour
     public void getUserComments()
     {
         Debug.Log("Função loadUserComennts");
-        FirebaseDatabase.DefaultInstance.GetReference("Comments").OrderByChild("User").EqualTo("devBruno")
+        FirebaseDatabase.DefaultInstance.GetReference("Comments").OrderByChild("User").EqualTo(autoUser)
         .ValueChanged += (object sender2, ValueChangedEventArgs e2) =>
         {
             if (e2.DatabaseError != null)
