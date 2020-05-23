@@ -1867,7 +1867,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1861150716}
         m_MethodName: CreateUserAsync
         m_Mode: 1
         m_Arguments:
@@ -4234,12 +4234,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1861150714}
-        m_MethodName: SwitchScreen
-        m_Mode: 2
+      - m_Target: {fileID: 1861150716}
+        m_MethodName: skipLogin
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1334595382}
-          m_ObjectArgumentAssemblyTypeName: UI_Screen, Assembly-CSharp
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4436,11 +4436,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextScreen: {fileID: 719393491}
+  loginScreen: {fileID: 1334595382}
   go: {fileID: 1861150714}
   emailText: {fileID: 1577041420}
   passwordText: {fileID: 1479812641}
   regEmailText: {fileID: 2081692415}
   regPasswordText: {fileID: 1256607632}
+  userValue: {fileID: 1861150717}
 --- !u!114 &1861150717
 MonoBehaviour:
   m_ObjectHideFlags: 0
