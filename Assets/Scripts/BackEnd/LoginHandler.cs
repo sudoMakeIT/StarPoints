@@ -29,6 +29,10 @@ public class LoginHandler : MonoBehaviour
     protected Firebase.Auth.FirebaseAuth auth;
     protected Dictionary<string, Firebase.Auth.FirebaseUser> userByAuth = new Dictionary<string, Firebase.Auth.FirebaseUser>();
     private string logText = "";
+    public Text loginErr;
+    public Text regErr;
+    public string loginErrText;
+    public string regErrText;
     public Text emailText;
     public InputField passwordText;
     public Text regEmailText;
@@ -90,6 +94,8 @@ public class LoginHandler : MonoBehaviour
         password = passwordText.text;
         emailReg = regEmailText.text;
         passwordReg = regPasswordText.text;
+        loginErr.text = loginErrText;
+        regErr.text = regErrText;
     }
 
     void OnDestroy()
@@ -210,7 +216,15 @@ public class LoginHandler : MonoBehaviour
 
                     authErrorCode = String.Format("AuthError.{0}: ",
                     ((Firebase.Auth.AuthError)firebaseEx.ErrorCode).ToString());
+                    if(operation == "Sign-in") {
+                        loginErrText = ((Firebase.Auth.AuthError)firebaseEx.ErrorCode).ToString();
+                    } else if(operation == "User Creation") {
+                        regErrText = ((Firebase.Auth.AuthError)firebaseEx.ErrorCode).ToString();
+                    }
+
                 }
+
+                
                 DebugLog(authErrorCode + exception.ToString());
             }
         }
@@ -359,7 +373,13 @@ public class LoginHandler : MonoBehaviour
     public void SignOut()
     {
         DebugLog("Signing out.");
+        loginErrText = "";
+        regErrText = "";
         auth.SignOut();
+        UnityMainThread.wkr.AddJob(() =>
+        {
+            go.SwitchScreen(loginScreen);
+        });
     }
 
     // Show the providers for the current email address.
@@ -379,16 +399,24 @@ public class LoginHandler : MonoBehaviour
     }
 
     public void skipLogin() {
-        if(userValue.userName == "" || userValue.userName == null) {
+        bool testing = false;
+        if(testing) {
             UnityMainThread.wkr.AddJob(() =>
             {
                 go.SwitchScreen(loginScreen);
             });
         } else {
-            UnityMainThread.wkr.AddJob(() =>
-            {
-                go.SwitchScreen(nextScreen);
-            });
+            if(userValue.userName == "" || userValue.userName == null) {
+                UnityMainThread.wkr.AddJob(() =>
+                {
+                    go.SwitchScreen(loginScreen);
+                });
+            } else {
+                UnityMainThread.wkr.AddJob(() =>
+                {
+                    go.SwitchScreen(nextScreen);
+                });
+            }
         }
     }
 }
