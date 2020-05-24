@@ -54,6 +54,7 @@
      <Compile Include="Assets\Scripts\UI\UI_Panel.cs" />
      <Compile Include="Assets\Scripts\UI\UI_Screen.cs" />
      <Compile Include="Assets\Scripts\UI\UI_System.cs" />
+     <Compile Include="Assets\Scripts\UI\UI_Text.cs" />
      <Compile Include="Assets\Scripts\UnityMainThread.cs" />
      <Compile Include="Assets\Scripts\UserValue.cs" />
      <Compile Include="Assets\ScrollStarField.cs" />
