@@ -53,6 +53,7 @@
      <Compile Include="Assets\Scripts\UI\UI_Button.cs" />
      <Compile Include="Assets\Scripts\UI\UI_Panel.cs" />
      <Compile Include="Assets\Scripts\UI\UI_Screen.cs" />
+     <Compile Include="Assets\Scripts\UI\UI_SwipeLevels.cs" />
      <Compile Include="Assets\Scripts\UI\UI_System.cs" />
      <Compile Include="Assets\Scripts\UI\UI_Text.cs" />
      <Compile Include="Assets\Scripts\UnityMainThread.cs" />
