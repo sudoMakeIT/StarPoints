@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\UI\UI_SwipeLevels.cs" />
      <Compile Include="Assets\Scripts\UI\UI_System.cs" />
      <Compile Include="Assets\Scripts\UI\UI_Text.cs" />
+     <Compile Include="Assets\Scripts\UI\UI_Wrapper.cs" />
      <Compile Include="Assets\Scripts\UnityMainThread.cs" />
      <Compile Include="Assets\Scripts\UserValue.cs" />
      <Compile Include="Assets\ScrollStarField.cs" />

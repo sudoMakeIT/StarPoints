@@ -63,6 +63,28 @@ public class UI_System : MonoBehaviour
         }
     }
 
+    public void SwitchScreenList(UI_Wrapper aWrapper)
+    {
+        if (aWrapper.screen)
+        {
+            if (currScreen)
+            {
+                currScreen.CloseScreen();
+                prevScreen = currScreen;
+            }
+
+            currScreen = aWrapper.screen;
+            currScreen.gameObject.SetActive(true);
+            currScreen.StartScreen();
+            currScreen.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = aWrapper.textConstellation.text.ToString();
+            currScreen.transform.GetChild(1).GetChild(3).GetComponent<Image>().sprite = aWrapper.sprite;
+            if (onSwitchedScreen != null)
+            {
+                onSwitchedScreen.Invoke();
+            }
+        }
+    }
+
     public void FadeIn()
     {
         if (fader)
