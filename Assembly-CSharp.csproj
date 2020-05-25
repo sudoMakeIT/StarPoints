@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\BackEnd\Constlation.cs" />
      <Compile Include="Assets\Scripts\BackEnd\Like.cs" />
      <Compile Include="Assets\Scripts\BackEnd\LoginHandler.cs" />
+     <Compile Include="Assets\Scripts\ChangeScene.cs" />
      <Compile Include="Assets\Scripts\UI\UI_Button.cs" />
      <Compile Include="Assets\Scripts\UI\UI_Panel.cs" />
      <Compile Include="Assets\Scripts\UI\UI_Screen.cs" />
