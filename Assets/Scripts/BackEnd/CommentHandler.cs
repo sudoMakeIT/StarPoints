@@ -47,6 +47,32 @@ public class CommentHandler : MonoBehaviour
     {
         commentListDB = null;
         autoUser = userValue.userName;
+    }
+
+
+    private void Update()
+    {
+        autoUser = userValue.userName;
+        if (!(commentListDB == null))
+        {
+            if (!commentListDB[commIndex].hasLike)
+            {
+                likeBtn.SetActive(true);
+                dislikeBtn.SetActive(false);
+            }
+            else
+            {
+                likeBtn.SetActive(false);
+                dislikeBtn.SetActive(true);
+            }
+        }
+        commentNew.text = "";
+
+
+    }
+
+
+    public void startLoad() {
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
         {
             dependencyStatus = task.Result;
@@ -61,25 +87,6 @@ public class CommentHandler : MonoBehaviour
                 "Could not resolve all Firebase dependencies: " + dependencyStatus);
             }
         });
-    }
-
-
-    private void Update()
-    {
-        if (!(commentListDB == null))
-        {
-            if (!commentListDB[commIndex].hasLike)
-            {
-                likeBtn.SetActive(true);
-                dislikeBtn.SetActive(false);
-            }
-            else
-            {
-                likeBtn.SetActive(false);
-                dislikeBtn.SetActive(true);
-            }
-        }
-
     }
 
     // Initialize the Firebase database:
@@ -117,6 +124,9 @@ public class CommentHandler : MonoBehaviour
         constNameText = constName.text;
         ratingText = "0";
 
+        if(commentNewText == "") {
+            return;
+        }
         DatabaseReference reference = FirebaseDatabase.DefaultInstance.GetReference("Comments");
 
         DebugLog("Running Transaction... add commets");
@@ -132,6 +142,7 @@ public class CommentHandler : MonoBehaviour
             else if (task.IsCompleted)
             {
                 DebugLog("Transaction complete. add comments");
+                commentNew.text = "";
             }
         });
     }
@@ -146,10 +157,6 @@ public class CommentHandler : MonoBehaviour
             commentList = new List<object>();
         }
 
-        foreach (var x in commentList)
-        {
-            DebugLog(x.ToString());
-        }
         // Now we add the new comment
         // Comment newComment = new Comment(constNameText, commentUserText, commentNewText, ratingText);
         // string jsonData = JsonUtility.ToJson(newComment);
