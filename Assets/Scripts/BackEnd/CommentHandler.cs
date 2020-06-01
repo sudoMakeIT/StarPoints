@@ -416,7 +416,7 @@ public class CommentHandler : MonoBehaviour
                 Debug.LogError(e2.DatabaseError.Message);
                 return;
             }
-            commentListDB = new List<Comment>();
+            userCommentListDB = new List<Comment>();
             if (e2.Snapshot != null && e2.Snapshot.ChildrenCount > 0)
             {
 
@@ -435,7 +435,7 @@ public class CommentHandler : MonoBehaviour
                         childSnapshot.Child("User").Value.ToString() + " - " +
                         childSnapshot.Key.ToString()
                         );
-                        commentListDB.Add(new Comment(
+                        userCommentListDB.Add(new Comment(
                             childSnapshot.Child("Const").Value.ToString(),
                             childSnapshot.Child("User").Value.ToString(),
                             childSnapshot.Child("Text").Value.ToString(),
@@ -449,6 +449,37 @@ public class CommentHandler : MonoBehaviour
             }
         };
     }
+
+    public int getIndexUser() {
+        return 0;
+    }
+    public void removeComment() {
+        int indexToRemove = getIndexUser(); //mudar para ser o retorno da função
+        string keyToRemove = userCommentListDB[indexToRemove].Id;
+        //remove comment
+        DebugLog("remove comment " + keyToRemove);
+
+        DatabaseReference reference = FirebaseDatabase.DefaultInstance.GetReference("Comments");
+        reference.Child(keyToRemove).SetValueAsync(null)
+        .ContinueWith(task =>
+        {
+            if (task.Exception != null)
+            {
+                DebugLog(task.Exception.ToString());
+            }
+            else if (task.IsCompleted)
+            {
+                DebugLog("Transaction complete. remove");
+            }
+        });
+
+        ///remove from likes
+
+
+    }
+
+
+
 }
 
 
