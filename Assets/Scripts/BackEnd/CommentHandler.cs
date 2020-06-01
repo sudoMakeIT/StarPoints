@@ -72,7 +72,8 @@ public class CommentHandler : MonoBehaviour
     }
 
 
-    public void startLoad() {
+    public void startLoad()
+    {
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
         {
             dependencyStatus = task.Result;
@@ -124,7 +125,8 @@ public class CommentHandler : MonoBehaviour
         constNameText = constName.text;
         ratingText = "0";
 
-        if(commentNewText == "") {
+        if (commentNewText == "")
+        {
             return;
         }
         DatabaseReference reference = FirebaseDatabase.DefaultInstance.GetReference("Comments");
