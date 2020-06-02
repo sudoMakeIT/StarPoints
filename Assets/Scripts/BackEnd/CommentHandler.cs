@@ -35,7 +35,14 @@ public class CommentHandler : MonoBehaviour
     public GameObject likeBtn;
     public GameObject dislikeBtn;
 
+    public Text userCommentPanel;
     private bool putlike;
+
+    //user  commment vars
+
+    public GameObject panelOriginal;
+    public GameObject container;
+    public GameObject scrollbar;
 
     const int kMaxLogSize = 16382;
     DependencyStatus dependencyStatus = DependencyStatus.UnavailableOther;
@@ -66,11 +73,7 @@ public class CommentHandler : MonoBehaviour
                 dislikeBtn.SetActive(true);
             }
         }
-        commentNew.text = "";
-
-
     }
-
 
     public void startLoad()
     {
@@ -80,7 +83,6 @@ public class CommentHandler : MonoBehaviour
             if (dependencyStatus == DependencyStatus.Available)
             {
                 InitializeFirebase();
-                LoadComment();
             }
             else
             {
@@ -144,7 +146,7 @@ public class CommentHandler : MonoBehaviour
             else if (task.IsCompleted)
             {
                 DebugLog("Transaction complete. add comments");
-                commentNew.text = "";
+                commentNew.text= " ";
             }
         });
     }
@@ -182,11 +184,12 @@ public class CommentHandler : MonoBehaviour
     public void LoadComment()
     {
         commIndex = 0;
-        Debug.Log("Função loadComennts");
         string constSearch = constName.text;
+        Debug.Log("Função loadComennts " + constSearch);
+        
         bool hasComment = false;
-        DatabaseReference reference = FirebaseDatabase.DefaultInstance.GetReference("Comments");
-        reference.ValueChanged += (object sender2, ValueChangedEventArgs e2) =>
+        FirebaseDatabase.DefaultInstance.GetReference("Comments").OrderByChild("Const").EqualTo(constSearch)
+        .ValueChanged += (object sender2, ValueChangedEventArgs e2) =>
         {
             if (e2.DatabaseError != null)
             {
@@ -241,6 +244,7 @@ public class CommentHandler : MonoBehaviour
         constName.text = commentListDB[commIndex].Const;
         rating.text = commentListDB[commIndex].Likes;
         userComment.text = commentListDB[commIndex].User;
+        userCommentPanel.text = autoUser;
 
     }
 
@@ -407,6 +411,20 @@ public class CommentHandler : MonoBehaviour
         });
     }
 
+    private void CreatePanel(int panelNum)
+    {
+        panelOriginal.GetComponent<UI_lercoisas>().commentText.text = userCommentListDB[0].Text;
+        panelOriginal.GetComponent<UI_lercoisas>().constText.text = userCommentListDB[0].Const;
+        for (int i = 1; i < panelNum; i++)
+        {
+            GameObject panelClone = Instantiate(panelOriginal);
+            panelClone.name = "Level (" + (i + 1) + ")";
+            panelClone.transform.parent = container.transform;
+            panelClone.GetComponent<UI_lercoisas>().commentText.text = userCommentListDB[i].Text;
+            panelClone.GetComponent<UI_lercoisas>().constText.text = userCommentListDB[i].Const;
+        }
+    }
+
     public void getUserComments()
     {
         Debug.Log("Função loadUserComennts");
@@ -432,7 +450,7 @@ public class CommentHandler : MonoBehaviour
                     }
                     else
                     {
-                        Debug.Log("Comments entrys : " +
+                        Debug.Log("Comments entrys user : " +
                         childSnapshot.Child("Text").Value.ToString() + " - " +
                         childSnapshot.Child("User").Value.ToString() + " - " +
                         childSnapshot.Key.ToString()
@@ -447,20 +465,54 @@ public class CommentHandler : MonoBehaviour
                     }
                 }
                 ///Change screen
-
+                CreatePanel(userCommentListDB.Count);
             }
         };
     }
 
-    public int getIndexUser() {
-        return 0;
-    }
-    public void removeComment() {
-        int indexToRemove = getIndexUser(); //mudar para ser o retorno da função
-        string keyToRemove = userCommentListDB[indexToRemove].Id;
-        //remove comment
-        DebugLog("remove comment " + keyToRemove);
+    
+    public int removePanel()
+    {
+        float scroll_pos = 0;
+        float[] pos;
 
+        pos = new float[container.transform.childCount];
+        float dist = 1f / (pos.Length - 1f);
+
+        for (int i = 0; i < pos.Length; i++)
+        {
+            pos[i] = dist * i;
+        }
+
+        scroll_pos = scrollbar.GetComponent<Scrollbar>().value;
+        for (int i = 0; i < pos.Length; i++)
+        {
+            if (scroll_pos < pos[i] + (dist / 2) && scroll_pos > pos[i] - (dist / 2))
+            {
+                DebugLog("i " + i.ToString() + " " + container.transform.GetChild(i).ToString());
+                Destroy(container.transform.GetChild(i).gameObject);
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void removeComment() {
+        int indexToRemove; //mudar para ser o retorno da função
+        string keyToRemove;
+        if(userCommentListDB.Count == 0) {
+            return;
+        } else if(userCommentListDB.Count == 1) {
+            indexToRemove = 0; //mudar para ser o retorno da função
+            keyToRemove = userCommentListDB[indexToRemove].Id;
+            panelOriginal.GetComponent<UI_lercoisas>().commentText.text = " ";
+            panelOriginal.GetComponent<UI_lercoisas>().constText.text = " ";
+        } else {
+            indexToRemove = removePanel(); //mudar para ser o retorno da função
+            keyToRemove = userCommentListDB[indexToRemove].Id;
+        }
+        //remove comment
+        DebugLog("remove comment " + keyToRemove + " index: " + indexToRemove.ToString());
         DatabaseReference reference = FirebaseDatabase.DefaultInstance.GetReference("Comments");
         reference.Child(keyToRemove).SetValueAsync(null)
         .ContinueWith(task =>
@@ -472,6 +524,18 @@ public class CommentHandler : MonoBehaviour
             else if (task.IsCompleted)
             {
                 DebugLog("Transaction complete. remove");
+                FirebaseDatabase.DefaultInstance.GetReference("Likes").Child(keyToRemove).SetValueAsync(null)
+                .ContinueWith(task1 =>
+                {
+                    if (task1.Exception != null)
+                    {
+                        DebugLog(task1.Exception.ToString());
+                    }
+                    else if (task1.IsCompleted)
+                    {
+                        DebugLog("Transaction complete. remove unfaving");
+                    }
+                });
             }
         });
 
