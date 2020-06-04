@@ -78,6 +78,7 @@ public class UI_System : MonoBehaviour
             currScreen.StartScreen();
             currScreen.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = aWrapper.textConstellation.text.ToString();
             currScreen.transform.GetChild(1).GetChild(3).GetComponent<Image>().sprite = aWrapper.sprite;
+            aWrapper.arScreen.transform.GetChild(0).GetComponent<ARTapToObject>().gameObjectToInstantiate = aWrapper.fbx;
             if (onSwitchedScreen != null)
             {
                 onSwitchedScreen.Invoke();

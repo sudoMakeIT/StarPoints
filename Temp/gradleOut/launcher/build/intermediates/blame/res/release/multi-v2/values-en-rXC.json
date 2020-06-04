@@ -1,0 +1,43 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/duarte/Desktop/FCUP/2ºSem/Computação Gráfica/myStars/Temp/gradleOut/launcher/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-en-rXC/values-en-rXC.xml",
+            "map": [
+                {
+                    "source": "/home/duarte/.gradle/caches/transforms-2/files-2.1/41d0188afbe3049f23a35bab772aba21/res/values-en-rXC/values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8",
+                        "startColumns": "0,0,0,0,0",
+                        "startOffsets": "194,344,498,723,945",
+                        "endColumns": "149,153,224,221,185",
+                        "endOffsets": "343,497,722,944,1130"
+                    },
+                    "to": {
+                        "startLines": "2,3,4,5,6",
+                        "startColumns": "4,4,4,4,4",
+                        "startOffsets": "55,209,367,596,822",
+                        "endColumns": "153,157,228,225,189",
+                        "endOffsets": "204,362,591,817,1007"
+                    }
+                },
+                {
+                    "source": "/home/duarte/.gradle/caches/transforms-2/files-2.1/90c69bea19ad8b25386e179c0074209d/res/values-en-rXC/values-en-rXC.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "202",
+                        "endOffsets": "253"
+                    },
+                    "to": {
+                        "startLines": "7",
+                        "startColumns": "4",
+                        "startOffsets": "1012",
+                        "endColumns": "202",
+                        "endOffsets": "1210"
+                    }
+                }
+            ]
+        }
+    ]
+}
