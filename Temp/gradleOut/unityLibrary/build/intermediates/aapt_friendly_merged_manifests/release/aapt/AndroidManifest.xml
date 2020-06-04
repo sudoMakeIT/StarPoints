@@ -30,7 +30,7 @@
         android:name="android.hardware.camera.ar"
         android:required="true" />
 
-    <application android:isGame="true" >
+    <application>
         <activity
             android:name="com.unity3d.player.UnityPlayerActivity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale|layoutDirection|density"
@@ -42,7 +42,6 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
 
             <meta-data
@@ -64,7 +63,7 @@
             android:value="portrait|landscape" />
         <meta-data
             android:name="unity.build-id"
-            android:value="45d86a97-3947-4e50-8d71-c0326c1b3a08" />
+            android:value="f74de4b5-1bd5-4959-8c6a-f93df346c8ec" />
         <meta-data
             android:name="unityplayer.SkipPermissionsDialog"
             android:value="true" />

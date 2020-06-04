@@ -121,7 +121,7 @@ public class ARTapToObject : MonoBehaviour
                 if (onTouchHold)
                 {
 
-                    spwanedObject = null;
+                    Destroy(spwanedObject);
                     spwanedObject = Instantiate(gameObjectToInstantiate, hitPose.position, hitPose.rotation);
 
                     spwanedObject.transform.localScale = Vector3.one;

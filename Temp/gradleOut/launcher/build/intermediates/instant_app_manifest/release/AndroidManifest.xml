@@ -45,9 +45,7 @@
 
     <application
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-        android:banner="@drawable/app_banner"
         android:icon="@mipmap/app_icon"
-        android:isGame="true"
         android:label="@string/app_name" >
         <activity
             android:name="com.unity3d.player.UnityPlayerActivity"
@@ -60,7 +58,6 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
 
             <meta-data
@@ -82,7 +79,7 @@
             android:value="portrait|landscape" />
         <meta-data
             android:name="unity.build-id"
-            android:value="45d86a97-3947-4e50-8d71-c0326c1b3a08" />
+            android:value="f74de4b5-1bd5-4959-8c6a-f93df346c8ec" />
         <meta-data
             android:name="unityplayer.SkipPermissionsDialog"
             android:value="true" />

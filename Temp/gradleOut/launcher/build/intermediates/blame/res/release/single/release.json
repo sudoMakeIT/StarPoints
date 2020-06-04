@@ -12,12 +12,12 @@
         "source": "/home/duarte/.gradle/caches/transforms-2/files-2.1/41d0188afbe3049f23a35bab772aba21/res/layout/__arcore_education.xml"
     },
     {
-        "merged": "/home/duarte/Desktop/FCUP/2ºSem/Computação Gráfica/myStars/Temp/gradleOut/launcher/build/intermediates/res/merged/release/drawable-hdpi-v4_common_full_open_on_phone.png.flat",
-        "source": "/home/duarte/.gradle/caches/transforms-2/files-2.1/885a5486cb080f702490be408de4c942/res/drawable-hdpi-v4/common_full_open_on_phone.png"
-    },
-    {
         "merged": "/home/duarte/Desktop/FCUP/2ºSem/Computação Gráfica/myStars/Temp/gradleOut/launcher/build/intermediates/res/merged/release/drawable-mdpi-v4_notify_panel_notification_icon_bg.png.flat",
         "source": "/home/duarte/.gradle/caches/transforms-2/files-2.1/90c69bea19ad8b25386e179c0074209d/res/drawable-mdpi-v4/notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "/home/duarte/Desktop/FCUP/2ºSem/Computação Gráfica/myStars/Temp/gradleOut/launcher/build/intermediates/res/merged/release/drawable-hdpi-v4_common_full_open_on_phone.png.flat",
+        "source": "/home/duarte/.gradle/caches/transforms-2/files-2.1/885a5486cb080f702490be408de4c942/res/drawable-hdpi-v4/common_full_open_on_phone.png"
     },
     {
         "merged": "/home/duarte/Desktop/FCUP/2ºSem/Computação Gráfica/myStars/Temp/gradleOut/launcher/build/intermediates/res/merged/release/drawable_common_google_signin_btn_icon_light_focused.xml.flat",
@@ -186,10 +186,6 @@
     {
         "merged": "/home/duarte/Desktop/FCUP/2ºSem/Computação Gráfica/myStars/Temp/gradleOut/launcher/build/intermediates/res/merged/release/drawable_common_google_signin_btn_text_light_focused.xml.flat",
         "source": "/home/duarte/.gradle/caches/transforms-2/files-2.1/885a5486cb080f702490be408de4c942/res/drawable/common_google_signin_btn_text_light_focused.xml"
-    },
-    {
-        "merged": "/home/duarte/Desktop/FCUP/2ºSem/Computação Gráfica/myStars/Temp/gradleOut/launcher/build/intermediates/res/merged/release/drawable-xhdpi_app_banner.png.flat",
-        "source": "/home/duarte/Desktop/FCUP/2ºSem/Computação Gráfica/myStars/Temp/gradleOut/launcher/src/main/res/drawable-xhdpi/app_banner.png"
     },
     {
         "merged": "/home/duarte/Desktop/FCUP/2ºSem/Computação Gráfica/myStars/Temp/gradleOut/launcher/build/intermediates/res/merged/release/drawable-xhdpi-v4_notification_bg_low_pressed.9.png.flat",

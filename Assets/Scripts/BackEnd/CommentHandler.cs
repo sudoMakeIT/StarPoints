@@ -60,7 +60,7 @@ public class CommentHandler : MonoBehaviour
     private void Update()
     {
         autoUser = userValue.userName;
-        if (!(commentListDB == null))
+        if (!(commentListDB == null || commentListDB.Count <= 0))
         {
             if (!commentListDB[commIndex].hasLike)
             {
@@ -146,7 +146,7 @@ public class CommentHandler : MonoBehaviour
             else if (task.IsCompleted)
             {
                 DebugLog("Transaction complete. add comments");
-                commentNew.text= " ";
+                commentNew.text = " ";
             }
         });
     }
@@ -186,7 +186,7 @@ public class CommentHandler : MonoBehaviour
         commIndex = 0;
         string constSearch = constName.text;
         Debug.Log("Função loadComennts " + constSearch);
-        
+
         bool hasComment = false;
         FirebaseDatabase.DefaultInstance.GetReference("Comments").OrderByChild("Const").EqualTo(constSearch)
         .ValueChanged += (object sender2, ValueChangedEventArgs e2) =>
@@ -231,8 +231,8 @@ public class CommentHandler : MonoBehaviour
                 ///Change screen
                 if (hasComment.Equals(true))
                     check4like();
-                updateText();
             }
+            updateText();
         };
 
 
@@ -240,11 +240,21 @@ public class CommentHandler : MonoBehaviour
 
     public void updateText()
     {
-        comment.text = commentListDB[commIndex].Text;
-        constName.text = commentListDB[commIndex].Const;
-        rating.text = commentListDB[commIndex].Likes;
-        userComment.text = commentListDB[commIndex].User;
         userCommentPanel.text = autoUser;
+        if (!(commentListDB == null || commentListDB.Count <= 0))
+        {
+            comment.text = commentListDB[commIndex].Text;
+            constName.text = commentListDB[commIndex].Const;
+            rating.text = commentListDB[commIndex].Likes;
+            userComment.text = commentListDB[commIndex].User;
+        }
+        else
+        {
+            comment.text = " ";
+            rating.text = " ";
+            userComment.text = " ";
+        }
+
 
     }
 
@@ -470,7 +480,7 @@ public class CommentHandler : MonoBehaviour
         };
     }
 
-    
+
     public int removePanel()
     {
         float scroll_pos = 0;
@@ -497,17 +507,24 @@ public class CommentHandler : MonoBehaviour
         return -1;
     }
 
-    public void removeComment() {
+    public void removeComment()
+    {
         int indexToRemove; //mudar para ser o retorno da função
         string keyToRemove;
-        if(userCommentListDB.Count == 0) {
+        commIndex--;
+        if (userCommentListDB.Count == 0)
+        {
             return;
-        } else if(userCommentListDB.Count == 1) {
+        }
+        else if (userCommentListDB.Count == 1)
+        {
             indexToRemove = 0; //mudar para ser o retorno da função
             keyToRemove = userCommentListDB[indexToRemove].Id;
             panelOriginal.GetComponent<UI_lercoisas>().commentText.text = " ";
             panelOriginal.GetComponent<UI_lercoisas>().constText.text = " ";
-        } else {
+        }
+        else
+        {
             indexToRemove = removePanel(); //mudar para ser o retorno da função
             keyToRemove = userCommentListDB[indexToRemove].Id;
         }

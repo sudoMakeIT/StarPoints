@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Thu Jun 04 22:29:15 WEST 2020
+#Thu Jun 04 23:51:48 WEST 2020
 124.path=bin/Data/Managed/UnityEngine.CoreModule.dll
 60.set=ASSET
 52.set=ASSET
